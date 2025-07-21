@@ -1,0 +1,113 @@
+/* Custom styles for methadone converter */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bs-dark) 0%, var(--bs-secondary) 100%);
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Custom card styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    border: none;
+    padding: 1.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Form enhancements */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.input-group-lg .form-control {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.input-group-text {
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+    font-weight: 600;
+    border-color: var(--bs-border-color);
+}
+
+/* Button styling */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Alert styling */
+.alert {
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* Icon styling */
+.fas, .far {
+    font-size: inherit;
+}
+
+/* Header styling */
+.display-4 {
+    background: linear-gradient(45deg, var(--bs-info), var(--bs-primary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+/* Results styling */
+.bg-light {
+    background-color: var(--bs-gray-100) !important;
+}
+
+.text-dark {
+    color: var(--bs-dark) !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Loading state */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Custom focus indicators for accessibility */
+.form-control:focus,
+.btn:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
