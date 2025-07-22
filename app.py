@@ -36,7 +36,7 @@ def index():
                 return render_template('index.html', input_dosage=input_dosage)
             
             # Perform the conversion using methadone-converter
-            conversion_result = converter.convert_dose(input_dosage)
+            conversion_result = converter.convert(input_dosage)
             
             app.logger.info(f"Converted dosage {input_dosage} mg with result: {conversion_result}")
             
