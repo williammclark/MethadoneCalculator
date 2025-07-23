@@ -1,0 +1,28 @@
+# Python-specific
+*.pyc
+__pycache__/
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-arg.txt
+.tox/
+.coverage
+.cache/
+.pytest_cache/
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Flask-specific
+instance/
+.webassets-cache/
+
+# Operating System and Editor specific
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
