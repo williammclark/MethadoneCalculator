@@ -10,8 +10,9 @@ body {
 
 /* Custom card styling */
 .card {
-    border: none;
+    background-color: #d0e5fa;   /* Slightly lighter than a dark background */
     border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for depth */
     overflow: hidden;
 }
 
@@ -82,6 +83,9 @@ body {
 
 .text-dark {
     color: var(--bs-dark) !important;
+}
+.text-success {
+    color: rgb(52, 58, 64) !important;
 }
 
 /* Responsive improvements */

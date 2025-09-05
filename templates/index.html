@@ -77,9 +77,9 @@
                                     </h5>
                                     <p class="h4 text-success mb-0">
                                         {% if conversion_result is mapping %}
-                                            {{ conversion_result.get('converted_dose', 'N/A') }} mg
+                                            {{ '%.2f'|format(conversion_result.get('converted_dose', 0)) }} mg
                                         {% else %}
-                                            {{ conversion_result }} mg
+                                            {{ '%.2f'|format(conversion_result|float) }} mg
                                         {% endif %}
                                     </p>
                                 </div>
