@@ -6,7 +6,7 @@
     <title>Methadone Dosage Converter</title>
     
     <!-- Bootstrap CSS with Replit theme -->
-    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -18,13 +18,10 @@
     <div class="container">
         <!-- Header -->
         <header class="text-center py-4 mb-4">
-            <h1 class="display-4 fw-bold">
-                <i class="fas fa-pills text-info me-3"></i>
-                Methadone Dosage Converter
+            <h1 class="display-3 fw-bold">
+                <i class="fas text-info me-3"></i>
+                Dosage Converter
             </h1>
-            <p class="lead text-muted">
-                Professional methadone dosage conversion tool for healthcare providers
-            </p>
         </header>
 
         <!-- Main Content -->
@@ -45,44 +42,23 @@
 
                 <!-- Conversion Form -->
                 <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-primary">
-                        <h3 class="card-title mb-0">
-                            <i class="fas fa-calculator me-2"></i>
-                            Dosage Conversion
-                        </h3>
-                    </div>
                     <div class="card-body">
                         <form method="POST" id="conversionForm">
-                            <div class="mb-4">
-                                <label for="dosage" class="form-label fw-semibold">
-                                    <i class="fas fa-capsules me-2 text-info"></i>
-                                    Current Methadone Dosage (mg)
-                                </label>
-                                <div class="input-group input-group-lg">
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="dosage" 
-                                        name="dosage" 
-                                        step="0.01" 
-                                        min="0.01"
-                                        placeholder="Enter dosage amount"
-                                        value="{{ input_dosage if input_dosage else '' }}"
-                                        required
-                                    >
-                                    <span class="input-group-text">mg</span>
-                                </div>
-                                <div class="form-text">
-                                    <i class="fas fa-info-circle me-1"></i>
-                                    Enter the current methadone dosage in milligrams (e.g., 80.5)
-                                </div>
-                            </div>
-                            
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-sync-alt me-2"></i>
-                                    Convert Dosage
-                                </button>
+                            <label for="dosage" class="form-label fw-semibold">
+                                <i class="fas me-2 text-info"></i>
+                                Morphine Dose (mg/day)
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="dosage" 
+                                    name="dosage" 
+                                    min="0.01"
+                                    placeholder="Enter dosage amount"
+                                    value="{{ input_dosage if input_dosage else '' }}"
+                                    required
+                                >
                             </div>
                         </form>
                     </div>
@@ -91,28 +67,13 @@
                 <!-- Conversion Results -->
                 {% if conversion_result %}
                 <div class="card border-success shadow-sm">
-                    <div class="card-header bg-success">
-                        <h3 class="card-title mb-0 text-white">
-                            <i class="fas fa-check-circle me-2"></i>
-                            Conversion Results
-                        </h3>
-                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <div class="p-3 bg-light rounded">
-                                    <h5 class="text-dark fw-semibold mb-2">
-                                        <i class="fas fa-input-numeric me-2 text-primary"></i>
-                                        Input Dosage
-                                    </h5>
-                                    <p class="h4 text-dark mb-0">{{ input_dosage }} mg</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="p-3 bg-success bg-opacity-10 rounded">
+                                <div class="p-3 bg-opacity-10 rounded">
                                     <h5 class="text-success fw-semibold mb-2">
                                         <i class="fas fa-output me-2"></i>
-                                        Converted Dosage
+                                        Methadone
                                     </h5>
                                     <p class="h4 text-success mb-0">
                                         {% if conversion_result is mapping %}
@@ -164,21 +125,15 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                This converter uses the methadone-converter package for accurate calculations
-                            </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                Designed for use by healthcare professionals
-                            </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                Supports decimal inputs for precise dosing
-                            </li>
                             <li class="mb-0">
                                 <i class="fas fa-exclamation-triangle text-warning me-2"></i>
-                                Always verify calculations and consult medical guidelines
+                                This tool is for informational and educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a licensed healthcare provider or pharmacist before making any decisions regarding medication dosing. The creators of this tool are not responsible for any errors, omissions, or outcomes resulting from its use. 
+                            </li>
+                            <br>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                This converter uses the methadone-converter described by:
+                                Fudin, J., et al. (2015). Mathematical Model for Methadone Conversion Examined. Journal of Pain Research, 8, 753–755. https://doi.org/10.2147/JPR.S95209
                             </li>
                         </ul>
                     </div>
@@ -190,8 +145,8 @@
     <!-- Footer -->
     <footer class="text-center py-4 mt-5 border-top">
         <p class="text-muted mb-0">
-            <i class="fas fa-shield-alt me-2"></i>
-            Professional medical dosage conversion tool
+            <i class="fas me-2"></i>
+            <a href="https://github.com/williammclark">Made By William Clark</a>
         </p>
     </footer>
 

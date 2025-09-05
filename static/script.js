@@ -2,59 +2,54 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('conversionForm');
     const dosageInput = document.getElementById('dosage');
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.innerHTML;
+    // Remove submit button reference
 
     // Form validation
     function validateDosage(value) {
-        const num = parseFloat(value);
-        return !isNaN(num) && num > 0 && num <= 1000; // Reasonable upper limit
+        // Accept integers or decimals, positive, up to 100000
+        const num = Number(value);
+        // Regex: matches integer or decimal, no negative, no exponent
+        const validFormat = /^(\d+)(\.\d{1,2})?$/;
+        return validFormat.test(value) && !isNaN(num) && num > 0 && num <= 100000;
     }
 
-    // Real-time input validation
-    dosageInput.addEventListener('input', function() {
+    // Debounced input validation and submit on keyup
+    let lastSubmittedValue = '';
+    dosageInput.addEventListener('keyup', function(e) {
+        e.preventDefault();  // Optional
+        console.log('Key', e.key);
         const value = this.value.trim();
-        const isValid = value === '' || validateDosage(value);
-        
+        const isValid = validateDosage(value);
+        let debounceTimeout = null;
+        // Remove previous debounce timeout if it exists
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
         if (isValid) {
-            this.classList.remove('is-invalid');
-            this.classList.add('is-valid');
-            submitButton.disabled = false;
+            if (value !== '' && value !== lastSubmittedValue) {
+                debounceTimeout = setTimeout(() => {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                    lastSubmittedValue = this.value;
+                    form.submit();
+                    form.focus();
+                }, 750); // 300ms debounce
+            }
         } else {
             this.classList.add('is-invalid');
             this.classList.remove('is-valid');
-            submitButton.disabled = true;
         }
+        dosageInput.focus();
     });
 
-    // Form submission handling
+    // Prevent manual form submission (optional, keeps validation)
     form.addEventListener('submit', function(e) {
         const dosageValue = dosageInput.value.trim();
-        
-        // Client-side validation
-        if (!dosageValue) {
-            e.preventDefault();
-            showAlert('Please enter a dosage amount.', 'error');
-            dosageInput.focus();
-            return;
-        }
-
         if (!validateDosage(dosageValue)) {
             e.preventDefault();
-            showAlert('Please enter a valid dosage between 0.01 and 1000 mg.', 'error');
-            dosageInput.focus();
-            return;
+            showAlert('Please enter a valid dosage between 0.01 and 100000 mg.', 'error');
         }
 
-        // Show loading state
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Converting...';
-        
-        // Re-enable button after a delay (in case of server error)
-        setTimeout(function() {
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalButtonText;
-        }, 10000);
     });
 
     // Custom alert function
